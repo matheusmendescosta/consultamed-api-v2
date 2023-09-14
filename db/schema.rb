@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_09_12_032420) do
+ActiveRecord::Schema[7.0].define(version: 2023_09_12_170838) do
   create_table "addresses", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.integer "zip_code"
     t.string "street"
@@ -21,6 +21,22 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_12_032420) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "complement"
+  end
+
+  create_table "clinics", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "name"
+    t.string "email"
+    t.integer "phone"
+    t.bigint "doctor_id", null: false
+    t.bigint "patient_id", null: false
+    t.bigint "address_id", null: false
+    t.bigint "specialty_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["address_id"], name: "index_clinics_on_address_id"
+    t.index ["doctor_id"], name: "index_clinics_on_doctor_id"
+    t.index ["patient_id"], name: "index_clinics_on_patient_id"
+    t.index ["specialty_id"], name: "index_clinics_on_specialty_id"
   end
 
   create_table "doctors", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -35,11 +51,25 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_12_032420) do
     t.index ["specialty_id"], name: "index_doctors_on_specialty_id"
   end
 
+  create_table "patients", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "name"
+    t.datetime "date_birth"
+    t.string "email"
+    t.integer "phone"
+    t.boolean "health_plan"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "specialties", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "clinics", "addresses"
+  add_foreign_key "clinics", "doctors"
+  add_foreign_key "clinics", "patients"
+  add_foreign_key "clinics", "specialties"
   add_foreign_key "doctors", "specialties"
 end
