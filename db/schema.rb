@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_09_14_175333) do
+ActiveRecord::Schema[7.0].define(version: 2023_09_14_220545) do
   create_table "addresses", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.integer "zip_code"
     t.string "street"
@@ -64,6 +64,21 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_14_175333) do
     t.index ["specialty_id"], name: "index_doctors_on_specialty_id"
   end
 
+  create_table "medical_records", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.boolean "allergy"
+    t.string "type_allergy"
+    t.boolean "surgery"
+    t.string "type_surgery"
+    t.boolean "continuous_medication"
+    t.string "type_continuous_medication"
+    t.float "weigth"
+    t.float "stature"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "patient_id", null: false
+    t.index ["patient_id"], name: "index_medical_records_on_patient_id"
+  end
+
   create_table "patients", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name"
     t.datetime "date_birth"
@@ -88,4 +103,5 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_14_175333) do
   add_foreign_key "consultations", "doctors"
   add_foreign_key "consultations", "patients"
   add_foreign_key "doctors", "specialties"
+  add_foreign_key "medical_records", "patients"
 end
