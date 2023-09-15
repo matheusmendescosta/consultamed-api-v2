@@ -1,0 +1,23 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  allergy: false
+  type_allergy: MyString
+  surgery: false
+  type_surgery: MyString
+  continuous_medication: false
+  type_continuous_medication: MyString
+  weigth: 1.5
+  stature: 1.5
+  consultation: one
+
+two:
+  allergy: false
+  type_allergy: MyString
+  surgery: false
+  type_surgery: MyString
+  continuous_medication: false
+  type_continuous_medication: MyString
+  weigth: 1.5
+  stature: 1.5
+  consultation: two
