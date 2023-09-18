@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  resources :query_histories
+  resources :attesteds
+  resources :prescritions
+  resources :health_plans
   resources :medical_records
   resources :consultations
   resources :clinics

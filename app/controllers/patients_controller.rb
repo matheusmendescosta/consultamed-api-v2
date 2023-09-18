@@ -10,8 +10,7 @@ class PatientsController < ApplicationController
 
   # GET /patients/1
   def show
-    @patient = Patient.includes(:doctor).find(params[:id])
-    render json: @patient.to_json(include: :doctor)
+    render json: @patient
   end
 
   # POST /patients
@@ -47,6 +46,6 @@ class PatientsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def patient_params
-      params.require(:patient).permit(:name, :date_birth, :email, :phone, :health_plan)
+      params.require(:patient).permit(:name, :date_birth, :email, :phone, :health_plan, :health_plan_id)
     end
 end

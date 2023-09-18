@@ -1,0 +1,23 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  product: MyString
+  identification_code: 1
+  plan: MyString
+  coverage: MyString
+  coparcenary: false
+  company: MyString
+  cns: 1
+  clinic: one
+  patient: one
+
+two:
+  product: MyString
+  identification_code: 1
+  plan: MyString
+  coverage: MyString
+  coparcenary: false
+  company: MyString
+  cns: 1
+  clinic: two
+  patient: two

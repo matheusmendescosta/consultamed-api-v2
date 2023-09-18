@@ -1,6 +1,8 @@
 class Clinic < ApplicationRecord
-  belongs_to :doctor
+  has_many :doctor
   belongs_to :patient
   belongs_to :address
   belongs_to :specialty
+
+  #has_many :doctor
 end

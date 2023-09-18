@@ -10,7 +10,8 @@ class ConsultationsController < ApplicationController
 
   # GET /consultations/1
   def show
-    render json: @consultation
+    @consultation = Consultation.includes(:doctor, :patient, :clinic).find(params[:id])
+    render json: @consultation.to_json( include: {doctor:{}, patient:{}, clinic:{}})
   end
 
   # POST /consultations
